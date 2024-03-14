@@ -1,7 +1,7 @@
 //   Function to fetch search results
 export const fetchSearchResults = async() => {
   try {
-    let response = await fetch(`https://itunes.apple.com/search?term=benson+boone&media=music`);
+    let response = await fetch(`https://itunes.apple.com/search?term=livingston&media=music`);
 
     const data = await response.json();
 
