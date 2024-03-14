@@ -1,6 +1,7 @@
 "use client";
 
 import "./style.scss"
+import Image from "next/image";
 
 const SearchBar = ({ searchResults }: { searchResults: any }) => {
 
@@ -10,7 +11,19 @@ const SearchBar = ({ searchResults }: { searchResults: any }) => {
     <>
       <div className="">
         {searchResults?.map((result: any, index: number) => {
-          return <div key={index}>{result.artistName}</div>;
+          return (
+            <div key={index}>
+              <Image
+                className=""
+                src={result.artworkUrl100}
+                alt="Next.js Logo"
+                width={100}
+                height={100}
+                priority
+              />
+              {result.artistName}
+            </div>
+          )
         })}
       </div>
     </>
