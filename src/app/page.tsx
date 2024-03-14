@@ -1,6 +1,10 @@
 import SearchBar from "./components/SearchBar";
+import { fetchResults } from "@/store/api/search-data";
+// import Image from "next/image";
 
-export default function Home() {
+const Home = async() => {
+  const data = await fetchResults()
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {/* <Image
@@ -11,7 +15,9 @@ export default function Home() {
         height={37}
         priority
       /> */}
-      <SearchBar/>
+      <SearchBar searchResults={data}/>
     </main>
   );
 }
+
+export default Home
