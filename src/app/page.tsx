@@ -1,9 +1,9 @@
 import SearchBar from "./components/SearchBar";
-import { fetchResults } from "@/store/api/search-data";
+import { fetchSearchResults } from "@/store/api/search-data";
 // import Image from "next/image";
 
 const Home = async() => {
-  const data = await fetchResults()
+  const data = await fetchSearchResults()
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

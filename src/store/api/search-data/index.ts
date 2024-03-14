@@ -1,5 +1,5 @@
 //   Function to fetch search results
-export const fetchResults = async() => {
+export const fetchSearchResults = async() => {
   try {
     let response = await fetch(`https://itunes.apple.com/search?term=benson+boone&media=music`);
 
