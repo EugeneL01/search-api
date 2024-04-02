@@ -1,7 +1,9 @@
 //   Function to fetch search results
-export const fetchSearchResults = async() => {
+export const fetchSearchResults = async (term: any) => {
   try {
-    let response = await fetch(`https://itunes.apple.com/search?term=livingston&media=music`);
+    let response = await fetch(
+      `https://itunes.apple.com/search?term=${term}&media=music`
+    );
 
     const data = await response.json();
 
@@ -9,4 +11,4 @@ export const fetchSearchResults = async() => {
   } catch (error) {
     console.error("Error fetching projects:", error);
   }
-}
+};
