@@ -1,15 +1,30 @@
+import Image from "next/image";
 import SearchBar from "./components/SearchBar";
-import { fetchSearchResults } from "@/store/api/search-data";
-import { store } from "@/store/module/search";
+import { fetchSearchResults, getSearchData } from "@/store/api/search-data";
 
 const Home = async () => {
-  const { fetchParam } = store
+  // const data = await fetchSearchResults([]);
 
-  const data = await fetchSearchResults('');
+  // const data = getSearchData();
 
   return (
     <main className="flex min-h-screen justify-center items-center">
-      <SearchBar searchResults={data} />
+      <SearchBar />
+      {/* {data?.map((result: any, index: number) => {
+        return (
+          <div key={index} className="max-w-[100px]">
+            <Image
+              className=""
+              src={result.artworkUrl100}
+              alt="Cover"
+              width={100}
+              height={100}
+              priority
+            />
+            {result.artistName}
+          </div>
+        );
+      })} */}
     </main>
   );
 };

@@ -1,4 +1,15 @@
-//   Function to fetch search results
+let searchData: any = [];
+
+export const setSearchData = (data : any) => {
+  searchData = data;
+  // console.log(searchData, "searchData")
+};
+
+export const getSearchData = () => {
+  return searchData;
+};
+
+
 export const fetchSearchResults = async (term: any) => {
   try {
     let response = await fetch(
@@ -6,6 +17,8 @@ export const fetchSearchResults = async (term: any) => {
     );
 
     const data = await response.json();
+    setSearchData(data.results);
+
 
     return data.results;
   } catch (error) {

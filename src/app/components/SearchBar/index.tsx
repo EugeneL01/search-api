@@ -1,19 +1,21 @@
 "use client";
 
+import { fetchSearchResults } from "@/store/api/search-data";
 import "./style.scss";
 import Image from "next/image";
-import { useRef, useState } from "react";
-import { store } from "@/store/module/search";
+import { useState } from "react";
 
-const SearchBar = ({ searchResults }: { searchResults: any }) => {
-  // console.log("API DATA:", searchResults);
+const SearchBar = () => {
+  const [inputValue, setInputValue] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
-  const { fetchParam } = store;
+  const handleInput = async (event: React.FormEvent<HTMLInputElement>) => {
+    const value = event.currentTarget.value;
+    setInputValue(value);
+    const results = await fetchSearchResults(value);
+    setSearchResults(results);
 
-  const handleInput = (event: React.FormEvent<HTMLInputElement>) => {
-    const inputValue: any = event.currentTarget.value;
-
-    fetchParam(inputValue);
+    return results;
   };
 
   return (
@@ -23,7 +25,8 @@ const SearchBar = ({ searchResults }: { searchResults: any }) => {
           type="text"
           id="inputText"
           placeholder="Type something..."
-          onInput={handleInput}
+          value={inputValue}
+          onChange={handleInput}
         />
         {searchResults?.map((result: any, index: number) => {
           return (
@@ -31,9 +34,9 @@ const SearchBar = ({ searchResults }: { searchResults: any }) => {
               <Image
                 className=""
                 src={result.artworkUrl100}
-                alt="Next.js Logo"
-                width={100}
-                height={100}
+                alt="Cover"
+                width={1000}
+                height={1000}
                 priority
               />
               {result.artistName}
