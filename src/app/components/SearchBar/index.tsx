@@ -9,9 +9,19 @@ const SearchBar = () => {
   const [inputValue, setInputValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
+  const handleKey = (event: any) => {
+    if (event.key === "Enter") {
+      handleInput(event);
+    }
+  };
+
+  const handleInputValue = (event: React.FormEvent<HTMLInputElement>) => {
+    const value = event.currentTarget.value;
+    setInputValue(value)
+  }
+
   const handleInput = async (event: React.FormEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
-    setInputValue(value);
     const results = await fetchSearchResults(value);
     setSearchResults(results);
 
@@ -26,7 +36,8 @@ const SearchBar = () => {
           id="inputText"
           placeholder="Type something..."
           value={inputValue}
-          onChange={handleInput}
+          onChange={handleInputValue}
+          onKeyDown={handleKey}
         />
         {searchResults?.map((result: any, index: number) => {
           return (
