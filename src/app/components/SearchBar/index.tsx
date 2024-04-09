@@ -6,21 +6,19 @@ import Image from "next/image";
 import { useState } from "react";
 
 const SearchBar = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [searchInputValue, setSearchInputValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  const handleKey = (event: any) => {
+  const handleSearchValue = (event: any) => {
     if (event.key === "Enter") {
-      handleInput(event);
+      getResults(event);
+    } else {
+      const value = event.currentTarget.value;
+      setSearchInputValue(value);
     }
   };
 
-  const handleInputValue = (event: React.FormEvent<HTMLInputElement>) => {
-    const value = event.currentTarget.value;
-    setInputValue(value)
-  }
-
-  const handleInput = async (event: React.FormEvent<HTMLInputElement>) => {
+  const getResults = async (event: React.FormEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
     const results = await fetchSearchResults(value);
     setSearchResults(results);
@@ -30,30 +28,32 @@ const SearchBar = () => {
 
   return (
     <>
-      <div className="flex flex-row flex-wrap gap-[20px]">
+      <div className="flex flex-col">
         <input
           type="text"
           id="inputText"
           placeholder="Type something..."
-          value={inputValue}
-          onChange={handleInputValue}
-          onKeyDown={handleKey}
+          value={searchInputValue}
+          onChange={handleSearchValue}
+          onKeyDown={handleSearchValue}
         />
-        {searchResults?.map((result: any, index: number) => {
-          return (
-            <div key={index} className="max-w-[100px]">
-              <Image
-                className=""
-                src={result.artworkUrl100}
-                alt="Cover"
-                width={1000}
-                height={1000}
-                priority
-              />
-              {result.artistName}
-            </div>
-          );
-        })}
+        <div className="flex flex-row flex-wrap gap-[20px]">
+          {searchResults?.map((result: any, index: number) => {
+            return (
+              <div key={index} className="max-w-[100px]">
+                <Image
+                  className=""
+                  src={result.artworkUrl100}
+                  alt="Cover"
+                  width={1000}
+                  height={1000}
+                  priority
+                />
+                {result.artistName}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </>
   );
