@@ -1,31 +1,13 @@
 @import "../tailwind.scss";
 
 .search-box {
-  @apply w-fit bg-[#2f3640] h-[60px] rounded-[40px] p-[10px];
+  @apply w-fit bg-[#2f3640] h-[60px] rounded-[40px] p-[10px] flex flex-row justify-between;
 }
 
 .search-btn {
-  float: right;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.4s;
-  cursor: pointer;
-  text-decoration: none;
+  @apply w-[40px] h-[40px] rounded-full flex justify-center items-center cursor-pointer;
 }
 
 .search-text {
-  border: none;
-  background: none;
-  outline: none;
-  float: left;
-  padding: 0;
-  color: white;
-  font-size: 16px;
-  font-weight: normal;
-  transition: 0.4s;
-  line-height: 40px;
+  @apply bg-transparent border-none outline-none text-white autofill:text-white;
 }
