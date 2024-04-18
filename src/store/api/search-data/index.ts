@@ -18,7 +18,7 @@ export const fetchSearchResults = async (term: any) => {
     const data = await response.json();
     // setSearchData(data.results);
 
-    console.log(data);
+    // console.log(data);
 
     return data.results;
   } catch (error) {

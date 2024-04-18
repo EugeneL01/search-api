@@ -5,7 +5,7 @@ import "./style.scss";
 import Image from "next/image";
 import { useState } from "react";
 
-const SearchBar = () => {
+const SearchBar = (results: any) => {
   const [searchInputValue, setSearchInputValue] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [toggleSearch, setToggleSearch] = useState(false);
@@ -64,10 +64,10 @@ const SearchBar = () => {
             </svg>
           </div>
         </div>
-        <div className="flex flex-row flex-wrap gap-[20px] pt-[20px]">
-          {searchResults?.map((result: any, index: number) => {
+        <div className="grid grid-cols-[repeat(10,_minmax(0,_1fr))] gap-[20px] pt-[20px]">
+          {results?.results.map((result: any, index: number) => {
             return (
-              <div key={index} className="max-w-[100px]">
+              <div key={index} className="w-full">
                 <Image
                   className=""
                   src={result.artworkUrl100}
